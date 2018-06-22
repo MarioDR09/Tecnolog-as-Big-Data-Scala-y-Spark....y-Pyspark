@@ -9,13 +9,13 @@
 //http://archive.ics.uci.edu/ml/datasets/Wholesale+customers
 
 // Aquí está la información sobre los datos:
-// 1) FRESCO: gasto anual (m.u.) en productos frescos (Continuo);
-// 2) LECHE: gasto anual (m.u.) en productos lácteos (Continuo);
-// 3) SUPERMERCADO: gasto anual (m.u.) en productos comestibles (Continuo);
-// 4) CONGELADO: gasto anual (m.u.) en productos congelados (Continuo)
-// 5) DETERGENTS_PAPER: gasto anual (m.u.) en detergentes y productos de papel (continuo)
-// 6) DELICATESSEN: gasto anual (m.u.) en productos delicatessen (continuo);
-// 7) CHANNEL: canal de clientes - Horeca (Hotel / Restaurante / Cafe) o canal de venta minorista (Nominal)
+// 1) FRESCO: gasto anual (m.u.) en productos frescos;
+// 2) LECHE: gasto anual (m.u.) en productos lácteos;
+// 3) SUPERMERCADO: gasto anual (m.u.) en productos comestibles;
+// 4) CONGELADO: gasto anual (m.u.) en productos congelados
+// 5) DETERGENTES: gasto anual (m.u.) en detergentes y productos de papel
+// 6) DELICATESSEN: gasto anual (m.u.) en productos delicatessen
+// 7) CANAL: canal de clientes - Horeca (Hotel / Restaurante / Cafe) o canal de venta minorista (Nominal)
 // 8) REGIÓN: clientes Región- Lisnon, Oporto u Otro (Nominal)
 
 //DAtos originales en Inglés:
@@ -45,12 +45,12 @@ val spark = SparkSession.builder().getOrCreate()
 import org.apache.spark.ml.clustering.KMeans
 
 // Se importan los datos
-val dataset = spark.read.option("header","true").option("inferSchema","true").csv("Wholesale customers data.csv")
+val datos = spark.read.option("header","true").option("inferSchema","true").csv("Wholesale customers data.csv")
 
 // Seleccionamos las siguientes columnas para el conjunto de entrenamiento:
 // Fresh, Milk, Grocery, Frozen, Detergents_Paper, Delicassen
 // LLamamos a esta nueva característica carac_datos
-val carac_datos = dataset.select($"Fresh", $"Milk", $"Grocery", $"Frozen", $"Detergents_Paper", $"Delicassen")
+val carac_datos = datos.select($"Fresh", $"Milk", $"Grocery", $"Frozen", $"Detergents_Paper", $"Delicassen")
 
 
 // Importamos VectorAssembler y Vectors
