@@ -9,12 +9,12 @@
 //http://archive.ics.uci.edu/ml/datasets/Wholesale+customers
 
 // Aquí está la información sobre los datos:
-// 1) FRESCO: gasto anual (m.u.) en productos frescos;
-// 2) LECHE: gasto anual (m.u.) en productos lácteos;
-// 3) SUPERMERCADO: gasto anual (m.u.) en productos comestibles;
-// 4) CONGELADO: gasto anual (m.u.) en productos congelados
-// 5) DETERGENTES: gasto anual (m.u.) en detergentes y productos de papel
-// 6) DELICATESSEN: gasto anual (m.u.) en productos delicatessen
+// 1) FRESCO: gasto anual en productos frescos;
+// 2) LECHE: gasto anual en productos lácteos;
+// 3) SUPERMERCADO: gasto anual en productos comestibles;
+// 4) CONGELADO: gasto anual en productos congelados
+// 5) DETERGENTES: gasto anual en detergentes y productos de papel
+// 6) DELICATESSEN: gasto anual en productos delicatessen
 // 7) CANAL: canal de clientes - Horeca (Hotel / Restaurante / Cafe) o canal de venta minorista (Nominal)
 // 8) REGIÓN: clientes Región- Lisnon, Oporto u Otro (Nominal)
 
