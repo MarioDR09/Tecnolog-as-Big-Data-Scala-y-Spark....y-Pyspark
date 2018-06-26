@@ -1,0 +1,60 @@
+// DATAFRAME CON NETFLIX
+// Se dará un vistazo al archivo Netflix_2011_2016.csv para verificar el uso de los DataFrames
+
+// Empezamos una sesión de Spark
+import org.apache.spark.sql.SparkSession
+val spark = SparkSession.builder().getOrCreate()
+
+// Cargamos el archivo Netflix Stock CSV, que Spark infiera los tipos de datos.
+val df = spark.read.option("header","true").option("inferSchema","true").csv("Netflix_2011_2016.csv")
+
+//Fuente de los datos:
+
+// Los nombres de las columnas
+df.columns
+
+// Aspecto del Schema
+df.printSchema()
+
+// Las 5 primeras columnas son:
+df.head(5)
+
+// Usamos describe() para ver info sobre el DataFrame.
+df.describe().show()
+
+//Creamos un dataframe con una columna llamada HV Ratio:
+// es la relación entre el precio alto frente al volumen de acciones negociadas
+// por un día.
+val df2 = df.withColumn("HV Ratio",df("High")/df("Volume"))
+
+// ¿Qué día tuvo el precio mas alto?
+df.orderBy($"High".desc).show(1)
+
+// ¿Qué cosa quiere decir la columna Close?
+df.select(mean("Close")).show()
+
+// ¿Cuál es el mácimo y mínimo de la la columna Volume?
+df.select(max("Volume")).show()
+df.select(min("Volume")).show()
+
+// De Scala/Spark $ Syntax
+import spark.implicits._
+
+// ¿Qué días estuvo la coñlumna Close con menos de $600?
+df.filter($"Close"<600).count()
+
+// ¿Qupe porcentaje del tiempo el High fue mas alto que $500 ?
+(df.filter($"High">500).count()*1.0/df.count())*100
+
+// ¿Cuál es la correlación de Pearson entre High y Volume?
+df.select(corr("High","Volume")).show()
+
+// ¿Cuél fue el máximo por año?
+val añodf = df.withColumn("Year",year(df("Date")))
+val añomaxs = añodf.select($"Year",$"High").groupBy("Year").max()
+añosavgs.select($"Year",$"max(High)").show()
+
+// ¿Cuál es el precio del Cierre promedio por cada mes?
+val mesdf = df.withColumn("Month",month(df("Date")))
+val mesavgs = mesdf.select($"Month",$"Close").groupBy("Month").mean()
+mesavgs.select($"Month",$"avg(Close)").show()
