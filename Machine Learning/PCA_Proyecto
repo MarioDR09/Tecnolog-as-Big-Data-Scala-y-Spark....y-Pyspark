@@ -1,0 +1,258 @@
+// PCA Proyecto (Diagnosticando el cáncer)
+
+/////////////////////////////////
+// DESCRIPCIÓN DEL DATASET ////
+///////////////////////////////
+
+// Aquí esta la descripción e información del dataset (en inglés):
+
+// Breast Cancer Wisconsin (Diagnostic) Database
+//
+// Notes
+// -----
+// Data Set Characteristics:
+//     :Number of Instances: 569
+//
+//     :Number of Attributes: 30 numeric, predictive attributes and the class
+//
+//     :Attribute Information:
+//         - radius (mean of distances from center to points on the perimeter)
+//         - texture (standard deviation of gray-scale values)
+//         - perimeter
+//         - area
+//         - smoothness (local variation in radius lengths)
+//         - compactness (perimeter^2 / area - 1.0)
+//         - concavity (severity of concave portions of the contour)
+//         - concave points (number of concave portions of the contour)
+//         - symmetry
+//         - fractal dimension ("coastline approximation" - 1)
+//
+//         The mean, standard error, and "worst" or largest (mean of the three
+//         largest values) of these features were computed for each image,
+//         resulting in 30 features.  For instance, field 3 is Mean Radius, field
+//         13 is Radius SE, field 23 is Worst Radius.
+//
+//         - class:
+//                 - WDBC-Malignant
+//                 - WDBC-Benign
+//
+//     :Summary Statistics:
+//
+//     ===================================== ======= ========
+//                                            Min     Max
+//     ===================================== ======= ========
+//     radius (mean):                         6.981   28.11
+//     texture (mean):                        9.71    39.28
+//     perimeter (mean):                      43.79   188.5
+//     area (mean):                           143.5   2501.0
+//     smoothness (mean):                     0.053   0.163
+//     compactness (mean):                    0.019   0.345
+//     concavity (mean):                      0.0     0.427
+//     concave points (mean):                 0.0     0.201
+//     symmetry (mean):                       0.106   0.304
+//     fractal dimension (mean):              0.05    0.097
+//     radius (standard error):               0.112   2.873
+//     texture (standard error):              0.36    4.885
+//     perimeter (standard error):            0.757   21.98
+//     area (standard error):                 6.802   542.2
+//     smoothness (standard error):           0.002   0.031
+//     compactness (standard error):          0.002   0.135
+//     concavity (standard error):            0.0     0.396
+//     concave points (standard error):       0.0     0.053
+//     symmetry (standard error):             0.008   0.079
+//     fractal dimension (standard error):    0.001   0.03
+//     radius (worst):                        7.93    36.04
+//     texture (worst):                       12.02   49.54
+//     perimeter (worst):                     50.41   251.2
+//     area (worst):                          185.2   4254.0
+//     smoothness (worst):                    0.071   0.223
+//     compactness (worst):                   0.027   1.058
+//     concavity (worst):                     0.0     1.252
+//     concave points (worst):                0.0     0.291
+//     symmetry (worst):                      0.156   0.664
+//     fractal dimension (worst):             0.055   0.208
+//     ===================================== ======= ========
+//
+//     :Missing Attribute Values: None
+//
+//     :Class Distribution: 212 - Malignant, 357 - Benign
+//
+//     :Creator:  Dr. William H. Wolberg, W. Nick Street, Olvi L. Mangasarian
+//
+//     :Donor: Nick Street
+//
+//     :Date: November, 1995
+
+
+// En español:
+
+// Breast Cancer Wisconsin (Diagnostic) Database
+//
+// Notas
+// -----
+// Características del conjunto de datos:
+//: Número de instancias: 569
+//
+//: Número de atributos: 30 atributos numéricos, predictivos y la clase
+//
+//: Información de atributo:
+// - radio (media de distancias desde el centro a puntos en el perímetro)
+// - textura (desviación estándar de los valores de escala de grises)
+// - perímetro
+// - zona
+// - suavidad (variación local en longitudes de radio)
+// - compacidad (perímetro ^ 2 / área - 1.0)
+// - concavidad (gravedad de las porciones cóncavas del contorno)
+// - puntos cóncavos (número de porciones cóncavas del contorno)
+// - simetría
+// - dimensión fractal ("aproximación costera" - 1)
+//
+// La media, error estándar, y "peor" o más grande (media de los tres
+// valores más grandes) de estas características se calcularon para cada imagen,
+// resulta en 30 características. Por ejemplo, el campo 3 es el radio medio, field
+// 13 es Radius SE, el campo 23 es Worst Radius.
+//
+// - clase:
+// - WDBC-Maligno
+// - WDBC-Benign
+//
+// :Resumen estadístico:
+//
+// ================================== ======= ==== ====
+// Mínimo máximo
+// ================================== ======= ==== ====
+// radio (media): 6.981 28.11
+// textura (media): 9.71 39.28
+// perímetro (media): 43.79 188.5
+// área (media): 143.5 2501.0
+// suavidad (media): 0.053 0.163
+// compacidad (media): 0.019 0.345
+// concavidad (media): 0.0 0.427
+// puntos cóncavos (media): 0.0 0.201
+// simetría (media): 0.106 0.304
+// dimensión fractal (media): 0.05 0.097
+// radio (error estándar): 0.112 2.873
+// textura (error estándar): 0.36 4.885
+// perímetro (error estándar): 0.757 21.98
+// área (error estándar): 6.802 542.2
+// uniformidad (error estándar): 0.002 0.031
+// compacidad (error estándar): 0.002 0.135
+// concavidad (error estándar): 0.0 0.396
+// puntos cóncavos (error estándar): 0.0 0.053
+// simetría (error estándar): 0.008 0.079
+// dimensión fractal (error estándar): 0.001 0.03
+// radio (peor): 7.93 36.04
+// textura (peor): 12.02 49.54
+// perímetro (peor): 50.41 251.2
+// área (peor): 185.2 4254.0
+// suavidad (peor): 0.071 0.223
+// compacidad (peor): 0.027 1.058
+// concavidad (peor): 0.0 1.252
+// puntos cóncavos (peor): 0.0 0.291
+// simetría (peor): 0.156 0.664
+// dimensión fractal (peor): 0.055 0.208
+// ================================== ======= ==== ====
+//
+//: valores de atributo faltantes: ninguno
+//
+//: Distribución de clase: 212 - Maligno, 357 - Benigno
+//
+//: Creador: Dr. William H. Wolberg, W. Nick Street, Olvi L. Mangasarian
+//
+//: Donante: Nick Street
+//
+//: Fecha: noviembre de 1995
+
+
+
+
+
+//////////////////////////////
+// EMPEZAMOS CON EL PROYECTO ///
+////////////////////////////
+
+// Importamos Spark y reamos una sesión de spark.
+import org.apache.spark.sql.SparkSession
+val spark = SparkSession.builder().appName("PCA_Proyecto").getOrCreate()
+
+// Leemos los datos de Cancer_Data.
+val datos = spark.read.option("header","true").option("inferSchema","true").format("csv").load("Cancer_Data")
+
+// Mostramos en pantalla el Schema de los datos
+datos.printSchema()
+
+// Importamos PCA, VectorAssembler y StandardScaler de ml.feature
+import org.apache.spark.ml.feature.{PCA,StandardScaler,VectorAssembler}
+
+// Importamos los Vectores desde ml.linalg
+import org.apache.spark.ml.linalg.Vectors
+
+
+// Usamos VectorAssembler para convertir las columnas de entrada de los datos de cáncer
+// a una sola columna de salida de una matriz llamada "características"
+// Establecemos las columnas de entrada de las cuales se supone que debemos leer los valores.
+// Llamameos a este nuevo objecto assembler (nombre estándar dentro de scala)
+
+// Hay demasiadas columnas así que para facilitar el trabajo
+// se pasará la siguiente instrucción con setInputCols
+
+val colnames = (Array("radio medio", "textura media", "perímetro medio", "área media", "suavidad media",
+"compacidad media", "concavidad media", "puntos cóncavos medios", "simetría media", "dimensión fractal media",
+"error de radio", "error de textura", "error de perímetro", "error de área", "error de uniformidad", "error de compacidad",
+"error de concavidad", "error de puntos cóncavos", "error de simetría", "error de dimensión fractal", "peor radio",
+"peor textura", "peor perímetro", "peor área", "peor suavidad", "peor compacidad", "peor concavidad",
+"peores puntos cóncavos", "peor simetría", "peor dimensión fractal"))
+
+val assembler = new VectorAssembler().setInputCols(colnames).setOutputCol("características")
+
+// Usamos el snsamblador (assembler) para transformar nuestro DataFrame a una solo columna: características
+val output = assembler.transform(data).select($"características")
+
+// A menudo es una buena idea normalizar cada característica para tener un estándar unitario
+// desviación como una media cero, cuando se usa PCA.
+// Esto es esencialmente un paso previo a la PCA, pero no siempre es necesario.
+
+// Utiliza StandardScaler en los datos
+// Crea un nuevo objeto StandardScaler () llamado scaler
+// Después establecemos la entrada a la columna de características y la salida a una columna llamada
+
+val scaler = (new StandardScaler()
+  .setInputCol("características")
+  .setOutputCol("caracescaladas")
+  .setWithStd(true)
+  .setWithMean(false))
+
+// Se calculan las estadísticas de resumen ajustando el StandardScaler.
+// Básicamente se crea un nuevo objeto llamado scalerModel usando scaler.fit ()
+// en la salida del VectorAssembler
+
+val scalerModel = scaler.fit(output)
+
+// Normalizamos cada característica para tener la desviación estándar de la unidad.
+// Usamos transform () fuera de este objeto scalerModel para crear tus scaledData
+
+val datoesc = scalerModel.transform(output)
+
+// Ahora es tiempo de  PCA para reducir las características principales a sus componentes principales
+
+// Creamos un nuevo objeto PCA () que tendrá en cuenta las funciones ya en escala
+// y salida de las características de las PC, usampos 4 componentes principales
+// Luego ajuste esto a scaledData
+
+val pca = (new PCA()
+  .setInputCol("caracescaladas")
+  .setOutputCol("pcacarac")
+  .setK(4)
+  .fit(scaledData)) m
+
+// Una vez que ha sido creada y entrenada con los datos, transformamos el scaledData
+// Llamemos a este  nuevo dataframe pcaDF
+val pcaDF = pca.transform(datoesc)
+
+// Mostrarmos las características principales
+val resultado = pcaDF.select("pcacarac")
+resultado.show()
+
+// Usamos .head() pra confirmar que la columna de salida (mi arreglo de características pcs)
+// solo tiene 4 componentes principales
+resultado.head(1)
