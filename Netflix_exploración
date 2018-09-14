@@ -33,7 +33,7 @@ df.orderBy($"High".desc).show(1)
 // ¿Qué cosa quiere decir la columna Close?
 df.select(mean("Close")).show()
 
-// ¿Cuál es el mácimo y mínimo de la la columna Volume?
+// ¿Cuál es el máximo y mínimo de la la columna Volume?
 df.select(max("Volume")).show()
 df.select(min("Volume")).show()
 
